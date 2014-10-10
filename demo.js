@@ -1,3 +1,5 @@
+/* global navbar */
+
 function makeNavListItem(element) {
   'use strict';
 

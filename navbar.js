@@ -24,7 +24,7 @@
       throw new Error('No navigation items for given selector.');
     }
 
-    // Favour className over classList for speed here.
+    // Use classList to avoid overwriting user classes.
     function handleScroll() {
       var frontRunner = { navElement: {} };
       var closestDist = Infinity;
@@ -36,16 +36,16 @@
 
         // If this element is not the front runner for top, deactivate it.
         if (absDist > closestDist) {
-          if (pair.navElement.className) {
-            pair.navElement.className = '';
+          if (pair.navElement.classList.contains(selectedClass)) {
+            pair.navElement.classList.remove(selectedClass);
           }
 
           continue;
         }
 
         // If this is a new front runner, deactivate the previous front runner.
-        if (frontRunner.className) {
-          frontRunner.className = '';
+        if (frontRunner.classList && frontRunner.classList.contains(selectedClass)) {
+          frontRunner.classList.remove(selectedClass);
         }
 
         frontRunner = pair.navElement;
@@ -54,7 +54,7 @@
 
       // All other elements have been deactivated, and now the top element is known and can be set
       // as active.
-      frontRunner.className = selectedClass;
+      frontRunner.classList.add(selectedClass);
     }
 
     // Whenever the window is scrolled, recalculate the active list element.
@@ -70,18 +70,18 @@
 
   // If navbar is being loaded with an AMD module loader.
   if (typeof define === 'function' && define.amd) {
-      define(function () {
-          return makeNav;
-      });
+    define(function () {
+      return makeNav;
+    });
 
-      return;
+    return;
   }
 
   // If navbar is being loaded in Node.js or with Browserify.
   if (typeof module === 'object' && module && module.exports) {
-      module.exports = makeNav;
+    module.exports = makeNav;
 
-      return;
+    return;
   }
 
   // Finally, if the module is being loaded as a global, then append navbar to the window.
