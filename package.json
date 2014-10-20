@@ -24,12 +24,17 @@
     "harness": "mocha-bdd",
     "files": "test.js",
     "browsers": [
-      "ie/8..latest",
+      "ie/7..10",
+      "firefox/3.5",
+      "firefox/latest",
       "chrome/latest",
-      "firefox/latest"
+      "safari/5..latest",
+      "opera/11",
+      "opera/next"
     ]
   },
   "devDependencies": {
+    "browserify": "6.1.0",
     "eslint": "0.8.2",
     "mocha": "1.21.5",
     "sinon": "1.10.3",
