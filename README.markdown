@@ -1,3 +1,5 @@
+![](https://ci.testling.com/qubyte/navbar.png)
+
 # navbar
 
 navbar is a tiny library to help you create navigation bars that listen for
