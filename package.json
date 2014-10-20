@@ -4,7 +4,7 @@
   "description": "navbar is a tiny library that creates a nav element with contents that will track elements as a user scrolls and will make the appropriate nav item active.",
   "main": "navbar.js",
   "scripts": {
-    "testling": "testling"
+    "test": "eslint navbar.js demo test && mocha-phantomjs --reporter spec test/test.html"
   },
   "repository": {
     "type": "git",
@@ -34,10 +34,8 @@
     ]
   },
   "devDependencies": {
-    "browserify": "6.1.0",
     "eslint": "0.8.2",
-    "mocha": "1.21.5",
-    "sinon": "1.10.3",
-    "testling": "1.7.1"
+    "mocha-phantomjs": "3.5.1",
+    "phantomjs": "1.9.11"
   }
 }
