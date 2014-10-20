@@ -1,0 +1,38 @@
+{
+  "name": "navbar",
+  "version": "0.1.0",
+  "description": "navbar is a tiny library that creates a nav element with contents that will track elements as a user scrolls and will make the appropriate nav item active.",
+  "main": "navbar.js",
+  "scripts": {
+    "testling": "testling"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/qubyte/navbar.git"
+  },
+  "keywords": [
+    "navigation",
+    "tracking"
+  ],
+  "author": "Mark Stanley Everitt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qubyte/navbar/issues"
+  },
+  "homepage": "https://github.com/qubyte/navbar",
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/latest",
+      "firefox/latest"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "0.8.2",
+    "mocha": "1.21.5",
+    "sinon": "1.10.3",
+    "testling": "1.7.1"
+  }
+}

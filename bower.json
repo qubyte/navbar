@@ -1,0 +1,34 @@
+{
+  "name": "navbar",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Mark Stanley Everitt",
+      "email": "mark.s.everitt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/qubyte/navbar"
+  },
+  "description": "navbar is a tiny library that creates a nav element with contents that will track elements as a user scrolls and will make the appropriate nav item active.",
+  "main": "navbar.js",
+  "keywords": [
+    "navigation",
+    "tracking"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    ".eslintignore",
+    ".eslintrc",
+    ".gitignore",
+    ".travis.yml"
+  ],
+  "devDependencies": {
+    "mocha": "~1.21.5",
+    "chai": "~1.9.2",
+    "requirejs": "~2.1.15"
+  }
+}

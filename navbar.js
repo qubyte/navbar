@@ -1,15 +1,47 @@
-;(function () {
+(function () {
   'use strict';
 
-  function makeNav(elementList, makeNavListItem) {
-    var selectedClass = 'navbar-active';
-    var nav = document.createElement('nav');
-    var navList = document.createElement('ul');
+  var selectedClass = 'navbar-active';
+
+  // It'd be nicer to use the classList API, but I prefer to support more browsers. Remove a class
+  // if it's found on the element.
+  function removeClassIfNeeded(el) {
+    if (!el.className) {
+      return;
+    }
+
+    var splitClassName = el.className.split(' ');
+    var selectedIndex = splitClassName.indexOf(selectedClass);
+
+    if (selectedIndex !== -1) {
+      splitClassName.splice(selectedIndex, 1);
+      el.className = splitClassName.join(' ');
+    }
+  }
+
+  // Add a class to an element if it is not found.
+  function addClassIfNeeded(el) {
+    if (!el.className) {
+      el.className = selectedClass;
+      return;
+    }
+
+    var splitClassName = el.className.split(' ');
+    var selectedIndex = splitClassName.indexOf(selectedClass);
+
+    if (selectedIndex === -1) {
+      splitClassName.push(selectedClass);
+      el.className = splitClassName.join(' ');
+    }
+  }
+
+  function createListItems(navList, elementList, makeNavListItem) {
     var pairs = [];
-    var i, len, element, li;
+    var element;
+    var li;
 
     // Create list elements
-    for (i = 0, len = elementList.length; i < len; i++) {
+    for (var i = 0, len = elementList.length; i < len; i++) {
       element = elementList[i];
       li = makeNavListItem(element);
 
@@ -18,35 +50,27 @@
       pairs.push({ element: element, navElement: li });
     }
 
-    var navItemsLength = pairs.length;
+    return pairs;
+  }
 
-    if (!navItemsLength) {
-      throw new Error('No navigation items for given selector.');
-    }
-
-    // Use classList to avoid overwriting user classes.
-    function handleScroll() {
+  function makeHandleScroll(pairs) {
+    return function handleScroll() {
       var frontRunner = { navElement: {} };
       var closestDist = Infinity;
-      var i, pair, absDist;
+      var pair, absDist;
 
-      for (i = 0; i < navItemsLength; i++) {
+      for (var i = 0, len = pairs.length; i < len; i++) {
         pair = pairs[i];
         absDist = Math.abs(pair.element.getBoundingClientRect().top);
 
         // If this element is not the front runner for top, deactivate it.
         if (absDist > closestDist) {
-          if (pair.navElement.classList.contains(selectedClass)) {
-            pair.navElement.classList.remove(selectedClass);
-          }
-
+          removeClassIfNeeded(pair.navElement);
           continue;
         }
 
         // If this is a new front runner, deactivate the previous front runner.
-        if (frontRunner.classList && frontRunner.classList.contains(selectedClass)) {
-          frontRunner.classList.remove(selectedClass);
-        }
+        removeClassIfNeeded(frontRunner);
 
         frontRunner = pair.navElement;
         closestDist = absDist;
@@ -54,11 +78,44 @@
 
       // All other elements have been deactivated, and now the top element is known and can be set
       // as active.
-      frontRunner.classList.add(selectedClass);
+      addClassIfNeeded(frontRunner, selectedClass);
+    };
+  }
+
+  function addScrollListener(handleScroll) {
+    if (window.addEventListener) {
+      window.addEventListener('scroll', handleScroll);
+    } else if (window.attachEvent)  {
+      window.attachEvent('onscroll', handleScroll);
+    }
+  }
+
+  function makeNav(elementList, makeNavListItem) {
+    var nav = document.createElement('nav');
+    var navList = document.createElement('ul');
+
+    if (!elementList) {
+      throw new Error('elementList must be provided.');
     }
 
-    // Whenever the window is scrolled, recalculate the active list element.
-    window.addEventListener('scroll', handleScroll);
+    if (!makeNavListItem) {
+      throw new Error('makeNavListItem must be provided.');
+    }
+
+    // Create list elements
+    var pairs = createListItems(navList, elementList, makeNavListItem);
+    var navItemsLength = pairs.length;
+
+    if (!navItemsLength) {
+      throw new Error('No navigation items for given selector.');
+    }
+
+    // Use classList to avoid overwriting user classes.
+    var handleScroll = makeHandleScroll(pairs);
+
+    // Whenever the window is scrolled, recalculate the active list element. Compatible with older
+    // versions of IE.
+    addScrollListener(handleScroll);
 
     // To calculate the initial active list element.
     handleScroll();
