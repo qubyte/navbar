@@ -8,7 +8,8 @@ require(['navbar'], function (navbar) {
   'use strict';
 
   // This function is where you define a list element, giving it classes, registering listeners, and
-  // appending children as you like.
+  // appending children as you like. This one couples with demo.css to produce labels that appear
+  // when a the list item is hovered over.
   function makeNavListItem(element) {
     var li = document.createElement('li');
     var label = document.createElement('span');
@@ -32,11 +33,11 @@ require(['navbar'], function (navbar) {
     return li;
   }
 
-  // I'm going to build a nav using all the h2 elements on the page.
-  var titles = document.querySelectorAll('h2');
-
   // Generate a nav list element for every h2 element on the page.
-  var nav = navbar(titles, makeNavListItem);
+  var nav = navbar({
+    elementList: document.querySelectorAll('h2'),
+    makeNavListItem: makeNavListItem
+  });
 
   // Finally, append the element to the document. In this demo the navbar is fixed, so I have simply
   // appended to the body.

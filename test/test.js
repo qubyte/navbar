@@ -44,35 +44,52 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       assert.equal(typeof navbar, 'function');
     });
 
-    it('should throw if a elementList is not provided', function () {
+    it('should throw if a no options object is provided', function () {
       assert.throws(function () {
         return navbar();
-      }, /elementList must be provided./);
+      }, /Options object with elementList and makeNavListItem must be provided./);
+    });
+
+    it('should throw if a elementList is not provided', function () {
+      assert.throws(function () {
+        return navbar({});
+      }, /Options object with elementList and makeNavListItem must be provided./);
     });
 
     it('should throw if a makeNavListItem is not provided', function () {
       var titles = this.elementList;
 
       assert.throws(function () {
-        return navbar(titles);
-      }, /makeNavListItem must be provided./);
+        return navbar({ elementList: titles });
+      }, /Options object with elementList and makeNavListItem must be provided./);
     });
 
     it('should not throw if elementList and makeNavListItem are provided', function () {
       var titles = this.elementList;
 
       assert.doesNotThrow(function () {
-        return navbar(titles, makeNavListItem);
+        return navbar({
+          elementList: titles,
+          makeNavListItem: makeNavListItem
+        });
       });
     });
 
     it('returns a nav element', function () {
-      assert.equal(navbar(this.elementList, makeNavListItem).tagName, 'NAV');
+      var nav = navbar({
+        elementList: this.elementList,
+        makeNavListItem: makeNavListItem
+      });
+
+      assert.equal(nav.tagName, 'NAV');
     });
 
     describe('nav', function () {
       beforeEach(function () {
-        this.nav = navbar(this.elementList, makeNavListItem);
+        this.nav = navbar({
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        });
       });
 
       it('contains a single element, and it should be a ul', function () {
@@ -105,7 +122,10 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
 
       it('Should check the position of element list members when the navbar is created', function () {
-        navbar(this.elementList, makeNavListItem);
+        navbar({
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        });
 
         for (var i = 0, len = this.stubs.length; i < len; i++) {
           assert.equal(this.stubs[i].callCount, 1);
@@ -113,7 +133,10 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
 
       it('should pick the element closest to the top', function () {
-        var lis = navbar(this.elementList, makeNavListItem).getElementsByTagName('li');
+        var lis = navbar({
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        }).getElementsByTagName('li');
 
         assert.equal(lis[0].className, 'navbar-active');
         assert.equal(lis[1].className, '');
@@ -126,7 +149,10 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
         this.stubs[0].returns({ top: -4});
         this.stubs[1].returns({ top: -3 });
 
-        var lis = navbar(this.elementList, makeNavListItem).getElementsByTagName('li');
+        var lis = navbar({
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        }).getElementsByTagName('li');
 
         assert.equal(lis[0].className, '');
         assert.equal(lis[1].className, '');
@@ -136,7 +162,10 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
 
       it('should check each time a scroll event is emitted', function () {
-        var lis = navbar(this.elementList, makeNavListItem).getElementsByTagName('li');
+        var lis = navbar({
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        }).getElementsByTagName('li');
 
         this.stubs[0].returns({ top: -4});
         this.stubs[1].returns({ top: -3 });

@@ -88,37 +88,25 @@
     } else if (window.attachEvent)  {
       window.attachEvent('onscroll', handleScroll);
     }
-  }
-
-  function makeNav(elementList, makeNavListItem) {
-    var nav = document.createElement('nav');
-    var navList = document.createElement('ul');
-
-    if (!elementList) {
-      throw new Error('elementList must be provided.');
-    }
-
-    if (!makeNavListItem) {
-      throw new Error('makeNavListItem must be provided.');
-    }
-
-    // Create list elements
-    var pairs = createListItems(navList, elementList, makeNavListItem);
-    var navItemsLength = pairs.length;
-
-    if (!navItemsLength) {
-      throw new Error('No navigation items for given selector.');
-    }
-
-    // Use classList to avoid overwriting user classes.
-    var handleScroll = makeHandleScroll(pairs);
-
-    // Whenever the window is scrolled, recalculate the active list element. Compatible with older
-    // versions of IE.
-    addScrollListener(handleScroll);
 
     // To calculate the initial active list element.
     handleScroll();
+  }
+
+  function makeNav(options) {
+    if (!options || !options.elementList || !options.makeNavListItem) {
+      throw new Error('Options object with elementList and makeNavListItem must be provided.');
+    }
+
+    var nav = document.createElement('nav');
+    var navList = document.createElement('ul');
+
+    // Create list elements
+    var pairs = createListItems(navList, options.elementList, options.makeNavListItem);
+
+    // Whenever the window is scrolled, recalculate the active list element. Compatible with older
+    // versions of IE.
+    addScrollListener(makeHandleScroll(pairs));
 
     nav.appendChild(navList);
 
