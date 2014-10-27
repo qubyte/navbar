@@ -12,8 +12,13 @@
       require.config({
         paths: {
           chai: '../bower_components/chai/chai',
-          sinon: '../bower_components/sinon/lib/sinon',
+          sinon: '../bower_components/sinon/index',
           navbar: '../navbar'
+        },
+        shim: {
+          'sinon': {
+            exports: 'sinon'
+          }
         }
       });
 

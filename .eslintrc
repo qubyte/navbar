@@ -33,7 +33,7 @@
       "consistent-return": 0,
 
       "block-scoped-var": 2,
-      "complexity": [2, 4],
+      "complexity": [2, 6],
       "curly": [2, "all"],
       "dot-notation": 2,
       "eqeqeq": 2,

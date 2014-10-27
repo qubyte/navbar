@@ -15,6 +15,7 @@ require(['navbar'], function (navbar) {
     var label = document.createElement('span');
     var spot = document.createElement('span');
 
+    // A label should have a nav-label class and contain the same text as the element.
     label.className = 'nav-label';
     label.textContent = element.textContent.trim();
 
@@ -24,7 +25,11 @@ require(['navbar'], function (navbar) {
     li.appendChild(label);
     li.appendChild(spot);
 
-    // I want clicks on nav items to scroll the relevant title into view.
+    // Custom className for our CSS purposes only. navbar will work around existing classes by
+    // appending or removing the navbar-active class.
+    li.className = 'nav-element';
+
+    // I want clicks on nav items to scroll the relevant title to the top of the view.
     li.addEventListener('click', function () {
       element.scrollIntoView(true);
     });

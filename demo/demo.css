@@ -18,7 +18,7 @@ nav {
   right: 2em;
 }
 
-nav li {
+.nav-element {
   text-align: right;
   cursor: pointer;
   margin-top: 1em;

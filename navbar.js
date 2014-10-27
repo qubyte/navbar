@@ -6,36 +6,52 @@
   // It'd be nicer to use the classList API, but I prefer to support more browsers. Remove a class
   // if it's found on the element.
   function removeClassIfNeeded(el) {
+    // If the element has no classes then we can take a shortcut.
     if (!el.className) {
       return;
     }
 
     var splitClassName = el.className.split(' ');
-    var selectedIndex = splitClassName.indexOf(selectedClass);
+    var replacementClassName = '';
 
-    if (selectedIndex !== -1) {
-      splitClassName.splice(selectedIndex, 1);
-      el.className = splitClassName.join(' ');
+    // Assemble a string of other class names.
+    for (var i = 0, len = splitClassName.length; i < len; i++) {
+      var className = splitClassName[i];
+
+      if (className !== selectedClass) {
+        replacementClassName += replacementClassName === '' ? className : ' ' + className;
+      }
+    }
+
+    // If the length of the className differs, then it had an selected class in and needs to be
+    // updated.
+    if (replacementClassName.length !== el.className.length) {
+      el.className = replacementClassName;
     }
   }
 
   // Add a class to an element if it is not found.
   function addClassIfNeeded(el) {
+    // If the element has no classes then we can take a shortcut.
     if (!el.className) {
       el.className = selectedClass;
       return;
     }
 
     var splitClassName = el.className.split(' ');
-    var selectedIndex = splitClassName.indexOf(selectedClass);
 
-    if (selectedIndex === -1) {
-      splitClassName.push(selectedClass);
-      el.className = splitClassName.join(' ');
+    // If any of the class names match the selected class then return.
+    for (var i = 0, len = splitClassName.length; i < len; i++) {
+      if (splitClassName[i] === selectedClass) {
+        return;
+      }
     }
+
+    // If we got here then the selected class needs to be added to an existing className.
+    el.className += ' ' + selectedClass;
   }
 
-  function createListItems(navList, elementList, makeNavListItem) {
+  function createAndAppendListItems(navList, elementList, makeNavListItem) {
     var pairs = [];
     var element;
     var li;
@@ -87,6 +103,8 @@
       window.addEventListener('scroll', handleScroll);
     } else if (window.attachEvent)  {
       window.attachEvent('onscroll', handleScroll);
+    } else {
+      throw new Error('This browser does not support addEventListener or attachEvent.');
     }
 
     // To calculate the initial active list element.
@@ -102,7 +120,7 @@
     var navList = document.createElement('ul');
 
     // Create list elements
-    var pairs = createListItems(navList, options.elementList, options.makeNavListItem);
+    var pairs = createAndAppendListItems(navList, options.elementList, options.makeNavListItem);
 
     // Whenever the window is scrolled, recalculate the active list element. Compatible with older
     // versions of IE.
