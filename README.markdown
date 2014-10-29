@@ -28,12 +28,13 @@ open an issue for it.
 
 ## Usage
 
-`navbar` is a function that takes an options object with two (mandatory) fields:
+`navbar` is a function that takes an options object with the fields:
 
- - `elementList`: An array or array-like object populated with elements to be
-represented in the nav list.
- - `makeNavListItem`: A function that takes an element and creates a navigation
-list item from it.
+| name | required | default | description |
+| ---- | -------- | ------- | ----------- |
+| `elementList` | true | N/A | An array or array-like object populated with elements to be represented in the nav list. |
+| `makeNavListItem` | true | N/A | A function that takes an element and creates a navigation list item from it. |
+| `target` | false | `window` | A DOM element to listen to for scroll events. |
 
 The navbar listens to scroll events, and will add a `navbar-active` class to the
 nav list item which is closest to the top of the window. This is pretty much all

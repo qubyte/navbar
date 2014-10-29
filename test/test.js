@@ -75,6 +75,30 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
     });
 
+    it('should default to listening for window scroll events', function () {
+      var addEventListenerSpy = sandbox.spy(window, 'addEventListener');
+
+      navbar({
+        elementList: this.elementList,
+        makeNavListItem: makeNavListItem
+      });
+
+      assert.equal(addEventListenerSpy.callCount, 1);
+    });
+
+    it('should use a given element to listen to for scroll events', function () {
+      var element = document.createElement('div');
+      var addEventListenerSpy = sandbox.spy(element, 'addEventListener');
+
+      navbar({
+        target: element,
+        elementList: this.elementList,
+        makeNavListItem: makeNavListItem
+      });
+
+      assert.equal(addEventListenerSpy.callCount, 1);
+    });
+
     it('returns a nav element', function () {
       var nav = navbar({
         elementList: this.elementList,
@@ -162,7 +186,10 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
 
       it('should check each time a scroll event is emitted', function () {
+        var element = document.createElement('div');
+
         var lis = navbar({
+          target: element,
           elementList: this.elementList,
           makeNavListItem: makeNavListItem
         }).getElementsByTagName('li');
@@ -173,9 +200,9 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
         if (document.createEvent) {
           var evt = document.createEvent('HTMLEvents');
           evt.initEvent('scroll', true, false);
-          window.dispatchEvent(evt);
+          element.dispatchEvent(evt);
         } else {
-          window.fireEvent('onscroll');
+          element.fireEvent('onscroll');
         }
 
         for (var i = 0, len = this.stubs.length; i < len; i++) {
@@ -185,6 +212,36 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
         assert.equal(lis[0].className, '');
         assert.equal(lis[1].className, '');
         assert.equal(lis[2].className, 'navbar-active');
+        assert.equal(lis[3].className, '');
+        assert.equal(lis[4].className, '');
+      });
+
+      it('should ignore scroll events from child elements of the target', function () {
+        var element = document.createElement('div');
+        var child = document.createElement('div');
+
+        element.appendChild(child);
+
+        var lis = navbar({
+          target: element,
+          elementList: this.elementList,
+          makeNavListItem: makeNavListItem
+        }).getElementsByTagName('li');
+
+        this.stubs[0].returns({ top: -4});
+        this.stubs[1].returns({ top: -3 });
+
+        if (document.createEvent) {
+          var evt = document.createEvent('HTMLEvents');
+          evt.initEvent('scroll', true, false);
+          child.dispatchEvent(evt);
+        } else {
+          child.fireEvent('onscroll');
+        }
+
+        assert.equal(lis[0].className, 'navbar-active');
+        assert.equal(lis[1].className, '');
+        assert.equal(lis[2].className, '');
         assert.equal(lis[3].className, '');
         assert.equal(lis[4].className, '');
       });

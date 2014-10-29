@@ -30,6 +30,6 @@
     "mocha": "~1.21.5",
     "chai": "~1.9.2",
     "requirejs": "~2.1.15",
-    "sinon": "http://sinonjs.org/releases/sinon-1.10.3.js"
+    "sinon": "~1.11.0"
   }
 }

@@ -98,11 +98,17 @@
     };
   }
 
-  function addScrollListener(handleScroll) {
-    if (window.addEventListener) {
-      window.addEventListener('scroll', handleScroll);
-    } else if (window.attachEvent)  {
-      window.attachEvent('onscroll', handleScroll);
+  function addScrollListener(target, handleScroll) {
+    function scrollHandleWrapper(evt) {
+      if (evt.target === target) {
+        handleScroll();
+      }
+    }
+
+    if (target.addEventListener) {
+      target.addEventListener('scroll', scrollHandleWrapper, false);
+    } else if (target.attachEvent)  {
+      target.attachEvent('onscroll', scrollHandleWrapper);
     } else {
       throw new Error('This browser does not support addEventListener or attachEvent.');
     }
@@ -119,12 +125,15 @@
     var nav = document.createElement('nav');
     var navList = document.createElement('ul');
 
+    // The target defaults to window.
+    var target = options.target || window;
+
     // Create list elements
     var pairs = createAndAppendListItems(navList, options.elementList, options.makeNavListItem);
 
     // Whenever the window is scrolled, recalculate the active list element. Compatible with older
     // versions of IE.
-    addScrollListener(makeHandleScroll(pairs));
+    addScrollListener(target, makeHandleScroll(pairs));
 
     nav.appendChild(navList);
 
