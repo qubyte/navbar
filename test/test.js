@@ -75,8 +75,8 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
     });
 
-    it('should default to listening for window scroll events', function () {
-      var addEventListenerSpy = sandbox.spy(window, 'addEventListener');
+    it('should default to listening for document scroll events', function () {
+      var addEventListenerSpy = sandbox.spy(document, 'addEventListener');
 
       navbar({
         elementList: this.elementList,

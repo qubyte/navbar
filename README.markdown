@@ -34,7 +34,7 @@ open an issue for it.
 | ---- | -------- | ------- | ----------- |
 | `elementList` | true | N/A | An array or array-like object populated with elements to be represented in the nav list. |
 | `makeNavListItem` | true | N/A | A function that takes an element and creates a navigation list item from it. |
-| `target` | false | `window` | A DOM element to listen to for scroll events. |
+| `target` | false | `document` | A DOM element to listen to for scroll events. |
 
 The navbar listens to scroll events, and will add a `navbar-active` class to the
 nav list item which is closest to the top of the window. This is pretty much all
@@ -44,7 +44,8 @@ any given time.
 
 ## Example
 
-Similar to the [demo](/demo), except using Browserify rather than RequireJS:
+Similar to the [demo](/demo), except using Browserify rather than just appending
+to the window object:
 
 ```javascript
 var navbar = require('navbar');

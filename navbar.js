@@ -126,7 +126,7 @@
     var navList = document.createElement('ul');
 
     // The target defaults to window.
-    var target = options.target || window;
+    var target = options.target || document;
 
     // Create list elements
     var pairs = createAndAppendListItems(navList, options.elementList, options.makeNavListItem);

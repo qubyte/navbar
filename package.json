@@ -5,8 +5,7 @@
   "main": "navbar.js",
   "scripts": {
     "test": "eslint navbar.js demo test && mocha-phantomjs --reporter spec test/test.html",
-    "preinstall": "npm prune",
-    "postinstall": "bower install"
+    "pretest": "bower install"
   },
   "repository": {
     "type": "git",
