@@ -21,19 +21,7 @@
     "url": "https://github.com/qubyte/navbar/issues"
   },
   "homepage": "https://github.com/qubyte/navbar",
-  "testling": {
-    "harness": "mocha-bdd",
-    "files": "test.js",
-    "browsers": [
-      "ie/7..10",
-      "firefox/3.5",
-      "firefox/latest",
-      "chrome/latest",
-      "safari/5..latest",
-      "opera/11",
-      "opera/next"
-    ]
-  },
+  "files": ["navbar.js"],
   "devDependencies": {
     "eslint": "0.8.2",
     "mocha-phantomjs": "3.5.1",
