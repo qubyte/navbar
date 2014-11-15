@@ -35,6 +35,7 @@ open an issue for it.
 | `elementList` | true | N/A | An array or array-like object populated with elements to be represented in the nav list. |
 | `makeNavListItem` | true | N/A | A function that takes an element and creates a navigation list item from it. |
 | `target` | false | `document` | A DOM element to listen to for scroll events. |
+| `tagName` | false | `nav` | Define the tag of element for navbar to return.
 
 The navbar listens to scroll events, and will add a `navbar-active` class to the
 nav list item which is closest to the top of the window. This is pretty much all

@@ -122,7 +122,7 @@
       throw new Error('Options object with elementList and makeNavListItem must be provided.');
     }
 
-    var nav = document.createElement('nav');
+    var nav = document.createElement(options.tagName || 'nav');
     var navList = document.createElement('ul');
 
     // The target defaults to window.

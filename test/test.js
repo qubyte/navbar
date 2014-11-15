@@ -4,8 +4,6 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
   var assert = chai.assert;
 
   describe('navbar', function () {
-    var sandbox;
-
     function makeNavListItem(element) {
       var li = document.createElement('li');
       li.textContent = element.textContent;
@@ -14,7 +12,7 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
     }
 
     beforeEach(function () {
-      sandbox = sinon.sandbox.create();
+      this.sandbox = sinon.sandbox.create();
 
       var container = document.createElement('div');
 
@@ -37,7 +35,7 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
     });
 
     afterEach(function () {
-      sandbox.restore();
+      this.sandbox.restore();
     });
 
     it('should be a function', function () {
@@ -76,7 +74,7 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
     });
 
     it('should default to listening for document scroll events', function () {
-      var addEventListenerSpy = sandbox.spy(document, 'addEventListener');
+      var addEventListenerSpy = this.sandbox.spy(document, 'addEventListener');
 
       navbar({
         elementList: this.elementList,
@@ -88,7 +86,7 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
 
     it('should use a given element to listen to for scroll events', function () {
       var element = document.createElement('div');
-      var addEventListenerSpy = sandbox.spy(element, 'addEventListener');
+      var addEventListenerSpy = this.sandbox.spy(element, 'addEventListener');
 
       navbar({
         target: element,
@@ -99,13 +97,23 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       assert.equal(addEventListenerSpy.callCount, 1);
     });
 
-    it('returns a nav element', function () {
+    it('returns a nav element by default', function () {
       var nav = navbar({
         elementList: this.elementList,
         makeNavListItem: makeNavListItem
       });
 
       assert.equal(nav.tagName, 'NAV');
+    });
+
+    it('returns another tag name if tagName is provided', function () {
+      var nav = navbar({
+        elementList: this.elementList,
+        makeNavListItem: makeNavListItem,
+        tagName: 'div'
+      });
+
+      assert.equal(nav.tagName, 'DIV');
     });
 
     describe('nav', function () {
@@ -137,11 +145,11 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
     describe('scrolling', function () {
       beforeEach(function () {
         this.stubs = [
-          sandbox.stub(this.elements[0], 'getBoundingClientRect').returns({ top: 0 }),
-          sandbox.stub(this.elements[1], 'getBoundingClientRect').returns({ top: 1 }),
-          sandbox.stub(this.elements[2], 'getBoundingClientRect').returns({ top: 2 }),
-          sandbox.stub(this.elements[3], 'getBoundingClientRect').returns({ top: 3 }),
-          sandbox.stub(this.elements[4], 'getBoundingClientRect').returns({ top: 4 })
+          this.sandbox.stub(this.elements[0], 'getBoundingClientRect').returns({ top: 0 }),
+          this.sandbox.stub(this.elements[1], 'getBoundingClientRect').returns({ top: 1 }),
+          this.sandbox.stub(this.elements[2], 'getBoundingClientRect').returns({ top: 2 }),
+          this.sandbox.stub(this.elements[3], 'getBoundingClientRect').returns({ top: 3 }),
+          this.sandbox.stub(this.elements[4], 'getBoundingClientRect').returns({ top: 4 })
         ];
       });
 
