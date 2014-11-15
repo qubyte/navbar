@@ -15,7 +15,7 @@ function makeNavListItem(element) {
   label.textContent = element.textContent.trim();
 
   spot.className = 'nav-spot';
-  spot.textContent = ' ●';
+  spot.textContent = '●';
 
   li.appendChild(label);
   li.appendChild(spot);
