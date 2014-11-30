@@ -1,7 +1,7 @@
 {
   "name": "navbar",
-  "version": "0.4.0",
-  "description": "navbar is a tiny library that creates a nav element with contents that will track elements as a user scrolls and will make the appropriate nav item active.",
+  "version": "0.4.1",
+  "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.js",
   "scripts": {
     "test": "eslint navbar.js demo test && mocha-phantomjs --reporter spec test/test.html",

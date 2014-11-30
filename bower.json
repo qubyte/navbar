@@ -1,6 +1,6 @@
 {
   "name": "navbar",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "authors": [
     {
       "name": "Mark Stanley Everitt",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git://github.com/qubyte/navbar"
   },
-  "description": "navbar is a tiny library that creates a nav element with contents that will track elements as a user scrolls and will make the appropriate nav item active.",
+  "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.js",
   "keywords": [
     "navigation",
