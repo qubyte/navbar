@@ -35,13 +35,17 @@ open an issue for it.
 | `elementList` | true | N/A | An array or array-like object populated with elements to be represented in the nav list. |
 | `makeNavListItem` | true | N/A | A function that takes an element and creates a navigation list item from it. |
 | `target` | false | `document` | A DOM element to listen to for scroll events. |
-| `tagName` | false | `nav` | Define the tag of element for navbar to return.
+| `tagName` | false | `nav` | Define the tag of element for navbar to return. |
+| `debounceTime` | false | `undefined` | After a scroll event, subsequent scroll events will be ignored for `debouceTime` milliseconds. |
 
 The navbar listens to scroll events, and will add a `navbar-active` class to the
 nav list item which is closest to the top of the window. This is pretty much all
 that `navbar` does, although I like to think that the interface that it presents
 is nice for defining a `nav` element. Only one element will have this class at
-any given time.
+any given time. If a `debounceTime` is given (recommended), then `navbar` will
+ignore further scroll events for that amount of time. Depending on your use case
+this may enhance performance.
+
 
 ## Example
 
@@ -87,7 +91,8 @@ function makeNavListItem(element) {
 // Generate a nav list element for every h2 element on the page.
 var nav = navbar({
   elementList: document.querySelectorAll('h2'),
-  makeNavListItem: makeNavListItem
+  makeNavListItem: makeNavListItem,
+  debounceTime: 100
 });
 
 // Finally, append the element to the document. In this demo the navbar is

@@ -37,7 +37,8 @@ function makeNavListItem(element) {
 // Generate a nav list element for every h2 element on the page.
 var nav = window.navbar({
   elementList: document.querySelectorAll('h2'),
-  makeNavListItem: makeNavListItem
+  makeNavListItem: makeNavListItem,
+  debounceTime: 100
 });
 
 // Finally, append the element to the document. In this demo the navbar is
