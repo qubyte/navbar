@@ -69,8 +69,8 @@
     return pairs;
   }
 
-  function makeHandleScroll(pairs) {
-    return function handleScroll() {
+  function makeHandleScroll(pairs, debounceTime) {
+    function handleScroll() {
       var frontRunner = { navElement: {} };
       var closestDist = Infinity;
       var pair, absDist;
@@ -95,6 +95,29 @@
       // All other elements have been deactivated, and now the top element is known and can be set
       // as active.
       addClassIfNeeded(frontRunner, selectedClass);
+    }
+
+    // The default behaviour is no debounce.
+    if (typeof debounceTime !== 'number' || isNaN(debounceTime)) {
+      return handleScroll;
+    }
+
+    var timeout;
+
+    function nullifyTimeout() {
+      timeout = null;
+    }
+
+    return function debouncedHandleScroll() {
+      if (timeout) {
+        return;
+      }
+
+      // Immediately use handleScroll to calculate.
+      handleScroll();
+
+      // No further calls to handleScroll until debounceTime has elapsed.
+      timeout = setTimeout(nullifyTimeout, debounceTime);
     };
   }
 
@@ -133,7 +156,7 @@
 
     // Whenever the window is scrolled, recalculate the active list element. Compatible with older
     // versions of IE.
-    addScrollListener(target, makeHandleScroll(pairs));
+    addScrollListener(target, makeHandleScroll(pairs, options.debounceTime));
 
     nav.appendChild(navList);
 
