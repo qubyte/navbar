@@ -1,8 +1,9 @@
 {
   "name": "navbar",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.js",
+  "homepage": "http://qubyte.github.io/navbar/",
   "scripts": {
     "test": "eslint navbar.js demo test && mocha-phantomjs --reporter spec test/test.html",
     "pretest": "bower install"
