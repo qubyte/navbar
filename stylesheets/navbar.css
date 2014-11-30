@@ -1,0 +1,30 @@
+.navbar-nav {
+  position: fixed;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  right: 0;
+}
+
+.nav-element {
+  list-style-type: none;
+  text-align: right;
+  cursor: pointer;
+  margin: 1rem;
+  color: #888;
+  transition: color 0.25s;
+}
+
+.navbar-active {
+  color: #fff;
+}
+
+.nav-label {
+  opacity: 0;
+  transition: opacity 0.25s;
+  padding: 0.5rem;
+}
+
+li:hover .nav-label {
+  opacity: 1;
+}

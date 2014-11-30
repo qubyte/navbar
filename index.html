@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <script src="javascripts/navbar.js"></script>
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -37,8 +39,11 @@ You feed it a list of elements and a function that returns <code>navbar</code> l
 and it returns a <code>nav</code> element populated with navigation items. You can dress
 this up with CSS to make it look how you like.</p>
 
-<p>It may not look like it's doing much, but it's fiddly stuff. For a demonstration
-open <code>demo.js</code> in your (recent version) browser.</p>
+<p>To the right are a set of three blobs.
+This is an example of a navbar instance. It's been configured to track the
+<code>h2</code> elements on this page. Try scrolling around to observe the correct element
+being set to active as the page moves. This one has also been configured to be clickable
+and to show the text of the <code>h2</code> element it represents on hover.
 
 <h2>
 <a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
@@ -171,6 +176,6 @@ to the window object:</p>
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+    <script src="javascripts/main.js"></script>
   </body>
 </html>
