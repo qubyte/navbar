@@ -29,8 +29,7 @@
         </ul>
       </header>
       <section>
-        <h1>
-<a id="navbar" class="anchor" href="#navbar" aria-hidden="true"><span class="octicon octicon-link"></span></a>navbar</h1>
+<h1><a id="navbar" class="anchor" href="#navbar" aria-hidden="true"><span class="octicon octicon-link"></span></a>navbar</h1>
 
 <p><code>navbar</code> is a tiny library to help you create navigation bars that listen for
 scroll events and calculate which element is closest to the top left of the
@@ -45,8 +44,7 @@ observe the correct element being set to active (white) as the page moves. This 
 also been configured to be clickable and to show the text of the <code>h2</code> element it
 represents on hover.
 
-<h2>
-<a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
+<h2><a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
 
 <p>This library comes with built in support for loading with RequireJS and
 Browserify. If you prefer to use neither, then you can still load it the old
@@ -62,52 +60,51 @@ almost any browser in use today, and certainly IE &gt;= 6. If you find that navb
 does not support a browser newer than IE6 then I consider it a bug, so please
 open an issue for it.</p>
 
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+<h2><a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p><code>navbar</code> is a function that takes an options object with the fields:</p>
 
 <table>
-<thead>
-<tr>
-<th>name</th>
-<th>required</th>
-<th>default</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>elementList</code></td>
-<td>true</td>
-<td>N/A</td>
-<td>An array or array-like object populated with elements to be represented in the nav list.</td>
-</tr>
-<tr>
-<td><code>makeNavListItem</code></td>
-<td>true</td>
-<td>N/A</td>
-<td>A function that takes an element and creates a navigation list item from it.</td>
-</tr>
-<tr>
-<td><code>target</code></td>
-<td>false</td>
-<td><code>document</code></td>
-<td>A DOM element to listen to for scroll events.</td>
-</tr>
-<tr>
-<td><code>tagName</code></td>
-<td>false</td>
-<td><code>nav</code></td>
-<td>Define the tag of element for navbar to return.</td>
-</tr>
-<tr>
-<td><code>debounceTime</code></td>
-<td>false</td>
-<td><code>undefined</code></td>
-<td>After a scroll event, subsequent scroll events will be ignored for <code>debouceTime</code> milliseconds.</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>required</th>
+      <th>default</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>elementList</code></td>
+      <td>true</td>
+      <td>N/A</td>
+      <td>An array or array-like object populated with elements to be represented in the nav list.</td>
+    </tr>
+    <tr>
+      <td><code>makeNavListItem</code></td>
+      <td>true</td>
+      <td>N/A</td>
+    <td>A function that takes an element and creates a navigation list item from it.</td>
+    </tr>
+    <tr>
+      <td><code>target</code></td>
+      <td>false</td>
+      <td><code>document</code></td>
+      <td>A DOM element to listen to for scroll events.</td>
+    </tr>
+    <tr>
+      <td><code>tagName</code></td>
+      <td>false</td>
+      <td><code>nav</code></td>
+      <td>Define the tag of element for navbar to return.</td>
+    </tr>
+    <tr>
+      <td><code>debounceTime</code></td>
+      <td>false</td>
+      <td><code>undefined</code></td>
+      <td>After a scroll event, subsequent scroll events will be ignored for <code>debouceTime</code> milliseconds.</td>
+    </tr>
+  </tbody>
 </table>
 
 <p>The navbar listens to scroll events, and will add a <code>navbar-active</code> class to the
@@ -118,10 +115,9 @@ any given time. If a <code>debounceTime</code> is given (recommended), then <cod
 ignore further scroll events for that amount of time. Depending on your use case
 this may enhance performance.</p>
 
-<h2>
-<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+<h2><a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<p>Similar to the <a href="/demo">demo</a>, except using Browserify rather than just appending
+<p>Similar to the <a href="https://github.com/qubyte/navbar/tree/master/demo">demo</a>, except using Browserify rather than just appending
 to the window object:</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> navbar <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>navbar<span class="pl-pds">'</span></span>);
