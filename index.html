@@ -38,7 +38,7 @@ You feed it a list of elements and a function that returns <code>navbar</code> l
 and it returns a <code>nav</code> element populated with navigation items. You can dress
 this up with CSS to make it look how you like.</p>
 
-<p>To the right are a set of three blobs. This is an example of a navbar instance. It's
+<p><strong>To the right are a set of three blobs.</strong> These are an example of a navbar instance. It's
 been configured to track the <code>h2</code> elements on this page. Try scrolling around to
 observe the correct element being set to active (white) as the page moves. This one has
 also been configured to be clickable and to show the text of the <code>h2</code> element it
@@ -120,51 +120,51 @@ this may enhance performance.</p>
 <p>Similar to the <a href="https://github.com/qubyte/navbar/tree/master/demo">demo</a>, except using Browserify rather than just appending
 to the window object:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> navbar <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>navbar<span class="pl-pds">'</span></span>);
+<div class="highlight highlight-javascript"><pre><span class="s">var</span> navbar <span class="k">=</span> <span class="s3">require</span>(<span class="s1"><span class="pds">'</span>navbar<span class="pds">'</span></span>);
 
-<span class="pl-c">// This function is where you define a list element, giving it classes,</span>
-<span class="pl-c">// registering listeners, and appending children as you like. This one couples</span>
-<span class="pl-c">// with demo.css to produce labels that appear when a the list item is hovered</span>
-<span class="pl-c">// over.</span>
-<span class="pl-st">function</span> <span class="pl-en">makeNavListItem</span>(<span class="pl-vpf">element</span>) {
-  <span class="pl-s">var</span> li <span class="pl-k">=</span> <span class="pl-s3">document</span>.<span class="pl-s3">createElement</span>(<span class="pl-s1"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>);
-  <span class="pl-s">var</span> label <span class="pl-k">=</span> <span class="pl-s3">document</span>.<span class="pl-s3">createElement</span>(<span class="pl-s1"><span class="pl-pds">'</span>span<span class="pl-pds">'</span></span>);
-  <span class="pl-s">var</span> spot <span class="pl-k">=</span> <span class="pl-s3">document</span>.<span class="pl-s3">createElement</span>(<span class="pl-s1"><span class="pl-pds">'</span>span<span class="pl-pds">'</span></span>);
+<span class="c">// This function is where you define a list element, giving it classes,</span>
+<span class="c">// registering listeners, and appending children as you like. This one couples</span>
+<span class="c">// with demo.css to produce labels that appear when a the list item is hovered</span>
+<span class="c">// over.</span>
+<span class="nf">function</span> <span class="en">makeNavListItem</span>(<span class="vpf">element</span>) {
+  <span class="s">var</span> li <span class="k">=</span> <span class="s3">document</span>.<span class="s3">createElement</span>(<span class="s1"><span class="pds">'</span>li<span class="pds">'</span></span>);
+  <span class="s">var</span> label <span class="k">=</span> <span class="s3">document</span>.<span class="s3">createElement</span>(<span class="s1"><span class="pds">'</span>span<span class="pds">'</span></span>);
+  <span class="s">var</span> spot <span class="k">=</span> <span class="s3">document</span>.<span class="s3">createElement</span>(<span class="s1"><span class="pds">'</span>span<span class="pds">'</span></span>);
 
-  <span class="pl-c">// A label should have a nav-label class and contain the same text as the</span>
-  <span class="pl-c">// element.</span>
-  label.<span class="pl-sc">className</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>nav-label<span class="pl-pds">'</span></span>;
-  label.textContent <span class="pl-k">=</span> element.textContent.trim();
+  <span class="c">// A label should have a nav-label class and contain the same text as the</span>
+  <span class="c">// element.</span>
+  label.<span class="sc">className</span> <span class="k">=</span> <span class="s1"><span class="pds">'</span>nav-label<span class="pds">'</span></span>;
+  label.textContent <span class="k">=</span> element.textContent.trim();
 
-  spot.<span class="pl-sc">className</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>nav-spot<span class="pl-pds">'</span></span>;
-  spot.textContent <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>●<span class="pl-pds">'</span></span>;
+  spot.<span class="sc">className</span> <span class="k">=</span> <span class="s1"><span class="pds">'</span>nav-spot<span class="pds">'</span></span>;
+  spot.textContent <span class="k">=</span> <span class="s1"><span class="pds">'</span>●<span class="pds">'</span></span>;
 
-  li.<span class="pl-s3">appendChild</span>(label);
-  li.<span class="pl-s3">appendChild</span>(spot);
+  li.<span class="s3">appendChild</span>(label);
+  li.<span class="s3">appendChild</span>(spot);
 
-  <span class="pl-c">// Custom className for our CSS purposes only. navbar will work around</span>
-  <span class="pl-c">// existing classes by appending or removing the navbar-active class.</span>
-  li.<span class="pl-sc">className</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>nav-element<span class="pl-pds">'</span></span>;
+  <span class="c">// Custom className for our CSS purposes only. navbar will work around</span>
+  <span class="c">// existing classes by appending or removing the navbar-active class.</span>
+  li.<span class="sc">className</span> <span class="k">=</span> <span class="s1"><span class="pds">'</span>nav-element<span class="pds">'</span></span>;
 
-  <span class="pl-c">// I want clicks on nav items to scroll the relevant title into view.</span>
-  li.addEventListener(<span class="pl-s1"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> () {
-    element.scrollIntoView(<span class="pl-c1">true</span>);
+  <span class="c">// I want clicks on nav items to scroll the relevant title into view.</span>
+  li.addEventListener(<span class="s1"><span class="pds">'</span>click<span class="pds">'</span></span>, <span class="nf">function</span> () {
+    element.scrollIntoView(<span class="m">true</span>);
   });
 
-  <span class="pl-c">// Remember to return the list element at the end!</span>
-  <span class="pl-k">return</span> li;
+  <span class="c">// Remember to return the list element at the end!</span>
+  <span class="k">return</span> li;
 }
 
-<span class="pl-c">// Generate a nav list element for every h2 element on the page.</span>
-<span class="pl-s">var</span> nav <span class="pl-k">=</span> navbar({
-  elementList<span class="pl-k">:</span> <span class="pl-s3">document</span>.querySelectorAll(<span class="pl-s1"><span class="pl-pds">'</span>h2<span class="pl-pds">'</span></span>),
-  makeNavListItem<span class="pl-k">:</span> makeNavListItem,
-  debounceTime<span class="pl-k">:</span> <span class="pl-c1">100</span>
+<span class="c">// Generate a nav list element for every h2 element on the page.</span>
+<span class="s">var</span> nav <span class="k">=</span> navbar({
+  elementList<span class="k">:</span> <span class="s3">document</span>.querySelectorAll(<span class="s1"><span class="pds">'</span>h2<span class="pds">'</span></span>),
+  makeNavListItem<span class="k">:</span> makeNavListItem,
+  debounceTime<span class="k">:</span> <span class="m">100</span>
 });
 
-<span class="pl-c">// Finally, append the element to the document. In this demo the navbar is</span>
-<span class="pl-c">// fixed, so I have simply appended to the body.</span>
-<span class="pl-s3">document</span>.querySelector(<span class="pl-s1"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>).<span class="pl-s3">appendChild</span>(nav);</pre></div>
+<span class="c">// Finally, append the element to the document. In this demo the navbar is</span>
+<span class="c">// fixed, so I have simply appended to the body.</span>
+<span class="s3">document</span>.querySelector(<span class="s1"><span class="pds">'</span>body<span class="pds">'</span></span>).<span class="s3">appendChild</span>(nav);</pre></div>
       </section>
     </div>
     <footer>

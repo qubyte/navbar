@@ -12,7 +12,6 @@
   cursor: pointer;
   margin: 1rem;
   color: #B2D2E1;
-  transition: color 0.25s;
 }
 
 .navbar-active {
@@ -23,8 +22,29 @@
   opacity: 0;
   transition: opacity 0.25s;
   padding: 0.5rem;
+  padding: 2px;
 }
 
 li:hover .nav-label {
   opacity: 1;
+}
+
+@media (max-width: 740px) {
+  .nav-element {
+    color: #999;
+  }
+
+  .navbar-active {
+    color: #000;
+  }
+
+  .nav-label {
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #999;
+  }
+
+  .navbar-active > .nav-label {
+    border: 1px solid #000;
+  }
 }

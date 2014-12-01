@@ -27,7 +27,7 @@ function makeNavListItem(element) {
   // I want clicks on nav items to scroll the relevant title to the top of the
   // view.
   li.addEventListener('click', function () {
-    element.scrollIntoView(true);
+    element.firstChild.click();
   });
 
   // Remember to return the list element at the end!
