@@ -46,3 +46,23 @@ nav.className = 'navbar-nav';
 // Finally, append the element to the document. In this demo the navbar is
 // fixed, so I have simply appended to the body.
 document.body.appendChild(nav);
+
+// After two seconds, make the nav labels appear in a wave to highlight them.
+setTimeout(function () {
+  var duration = 500;
+  var offsetFactor = 150;
+  var navElements = document.querySelectorAll('.nav-element');
+
+  Array.prototype.forEach.call(navElements, function (el, i) {
+    var offset = offsetFactor * i;
+
+    setTimeout(function () {
+      el.classList.add('highlight-nav-el');
+    }, offset);
+
+
+    setTimeout(function () {
+      el.classList.remove('highlight-nav-el');
+    }, offset + duration);
+  });
+}, 2000);
