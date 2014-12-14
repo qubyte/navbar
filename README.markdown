@@ -97,5 +97,5 @@ var nav = navbar({
 
 // Finally, append the element to the document. In this demo the navbar is
 // fixed, so I have simply appended to the body.
-document.querySelector('body').appendChild(nav);
+document.body.appendChild(nav);
 ```
