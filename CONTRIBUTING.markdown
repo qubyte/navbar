@@ -2,4 +2,5 @@
 
 Clone this repo and run (assuming you have Node.js installed) `npm install`.
 
-Before making a pull request, update the test file and run `npm test`.
+Before making a pull request, update the test file and open
+[the tests](test/test.html) in your browser.
