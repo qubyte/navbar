@@ -1,6 +1,6 @@
 {
   "name": "navbar",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.umd.js",
   "jsnext:main": "navbar.es6.js",
@@ -23,7 +23,8 @@
     "url": "https://github.com/qubyte/navbar/issues"
   },
   "files": [
-    "navbar.js"
+    "navbare.umd.js",
+    "navbare.es6.js"
   ],
   "devDependencies": {
     "chai": "3.4.1",
