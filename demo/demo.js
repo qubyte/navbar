@@ -3,8 +3,6 @@
 // with demo.css to produce labels that appear when a the list item is hovered
 // over.
 function makeNavListItem(element) {
-  'use strict';
-
   var li = document.createElement('li');
   var label = document.createElement('span');
   var spot = document.createElement('span');
