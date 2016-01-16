@@ -7,7 +7,7 @@
   "homepage": "https://qubyte.github.io/navbar/",
   "scripts": {
     "build-umd": "rollup -f umd -n navbar navbar.es6.js > navbar.umd.js",
-    "test": "eslint . && mocha-phantomjs --reporter spec test/test.html",
+    "test": "eslint . && mocha-phantomjs --reporter spec test/test.html"
   },
   "repository": {
     "type": "git",
