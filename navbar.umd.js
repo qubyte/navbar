@@ -1,5 +1,8 @@
-(function () {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.navbar = factory());
+}(this, function () { 'use strict';
 
   var selectedClass = 'navbar-active';
 
@@ -163,22 +166,6 @@
     return nav;
   }
 
-  // If navbar is being loaded with an AMD module loader.
-  if (typeof define === 'function' && define.amd) {
-    define(function () {
-      return makeNav;
-    });
+  return makeNav;
 
-    return;
-  }
-
-  // If navbar is being loaded in Node.js or with Browserify.
-  if (typeof module === 'object' && module && module.exports) {
-    module.exports = makeNav;
-
-    return;
-  }
-
-  // Finally, if the module is being loaded as a global, then append navbar to the window.
-  window.navbar = makeNav;
-}());
+}));

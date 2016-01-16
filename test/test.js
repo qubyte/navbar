@@ -1,6 +1,4 @@
-define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
-  'use strict';
-
+(function () {
   var assert = chai.assert;
 
   describe('navbar', function () {
@@ -301,4 +299,4 @@ define(['navbar', 'chai', 'sinon'], function (navbar, chai, sinon) {
       });
     });
   });
-});
+}());
