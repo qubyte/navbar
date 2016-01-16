@@ -12,7 +12,8 @@
     "url": "git://github.com/qubyte/navbar"
   },
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
-  "main": "navbar.js",
+  "main": "navbar.umd.js",
+  "jsnext:main": "navbar.es6.js",
   "keywords": [
     "navigation",
     "tracking"
@@ -25,11 +26,5 @@
     ".eslintrc",
     ".gitignore",
     ".travis.yml"
-  ],
-  "devDependencies": {
-    "mocha": "~1.21.5",
-    "chai": "~1.9.2",
-    "requirejs": "~2.1.15",
-    "sinon": "~1.11.0"
-  }
+  ]
 }
