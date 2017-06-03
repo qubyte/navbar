@@ -1,6 +1,6 @@
 {
   "name": "navbar",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.umd.js",
   "jsnext:main": "navbar.es6.js",
