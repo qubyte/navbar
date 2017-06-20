@@ -53,16 +53,16 @@ Similar to the [demo](/demo), except using Browserify rather than just appending
 to the window object:
 
 ```javascript
-var navbar = require('navbar');
+const navbar = require('navbar');
 
 // This function is where you define a list element, giving it classes,
 // registering listeners, and appending children as you like. This one couples
 // with demo.css to produce labels that appear when a the list item is hovered
 // over.
 function makeNavListItem(element) {
-  var li = document.createElement('li');
-  var label = document.createElement('span');
-  var spot = document.createElement('span');
+  const li = document.createElement('li');
+  const label = document.createElement('span');
+  const spot = document.createElement('span');
 
   // A label should have a nav-label class and contain the same text as the
   // element.
@@ -80,16 +80,14 @@ function makeNavListItem(element) {
   li.className = 'nav-element';
 
   // I want clicks on nav items to scroll the relevant title into view.
-  li.addEventListener('click', function () {
-    element.scrollIntoView(true);
-  });
+  li.addEventListener('click', () => element.scrollIntoView(true));
 
   // Remember to return the list element at the end!
   return li;
 }
 
 // Generate a nav list element for every h2 element on the page.
-var nav = navbar({
+const nav = navbar({
   elementList: document.querySelectorAll('h2'),
   makeNavListItem: makeNavListItem,
   debounceTime: 100
