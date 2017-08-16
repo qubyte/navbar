@@ -5,6 +5,17 @@
 }(this, (function () { 'use strict';
 
 var selectedClass = 'navbar-active';
+var supportsPassive = false;
+
+try {
+  var opts = Object.defineProperty({}, 'passive', {
+    get: function () {
+      supportsPassive = true;
+    }
+  });
+
+  window.addEventListener('test', null, opts);
+} catch (e) {}
 
 // It'd be nicer to use the classList API, but I prefer to support more browsers. Remove a class
 // if it's found on the element.
@@ -133,7 +144,7 @@ function addScrollListener(target, handleScroll) {
   }
 
   if (target.addEventListener) {
-    target.addEventListener('scroll', scrollHandleWrapper, false);
+    target.addEventListener('scroll', scrollHandleWrapper, supportsPassive ? { passive: true } : false);
   } else if (target.attachEvent) {
     target.attachEvent('onscroll', scrollHandleWrapper);
   } else {
