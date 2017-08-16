@@ -8,12 +8,9 @@
   "homepage": "https://qubyte.github.io/navbar/",
   "scripts": {
     "build-umd": "rollup -f umd -n navbar navbar.es6.js > navbar.umd.js",
-    "test": "eslint . && mocha-phantomjs --reporter spec test/test.html"
+    "test": "eslint . && testem ci --launch firefox"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/qubyte/navbar.git"
-  },
+  "repository": "github:qubyte/navbar",
   "keywords": [
     "navigation",
     "tracking"
@@ -28,11 +25,12 @@
     "navbar.es6.js"
   ],
   "devDependencies": {
-    "chai": "3.4.1",
-    "eslint": "1.10.3",
-    "mocha": "2.3.4",
-    "mocha-phantomjs": "4.0.2",
-    "rollup": "0.24.1",
-    "sinon": "1.17.2"
+    "chai": "4.1.1",
+    "eslint": "4.4.1",
+    "eslint-config-qubyte": "1.1.0",
+    "mocha": "3.5.0",
+    "rollup": "0.47.5",
+    "sinon": "3.2.0",
+    "testem": "^1.18.3"
   }
 }
