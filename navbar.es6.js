@@ -70,7 +70,8 @@ function makeHandleScroll(pairs, debounceTime) {
   function handleScroll() {
     var frontRunner = { navElement: {} };
     var closestDist = Infinity;
-    var pair, absDist;
+    var pair;
+    var absDist;
 
     for (var i = 0, len = pairs.length; i < len; i++) {
       pair = pairs[i];
@@ -127,7 +128,7 @@ function addScrollListener(target, handleScroll) {
 
   if (target.addEventListener) {
     target.addEventListener('scroll', scrollHandleWrapper, false);
-  } else if (target.attachEvent)  {
+  } else if (target.attachEvent) {
     target.attachEvent('onscroll', scrollHandleWrapper);
   } else {
     throw new Error('This browser does not support addEventListener or attachEvent.');

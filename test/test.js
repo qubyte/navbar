@@ -2,6 +2,11 @@
   var assert = chai.assert;
 
   describe('navbar', function () {
+    var sandbox;
+    var container;
+    var elements;
+    var elementList;
+
     function makeNavListItem(element) {
       var li = document.createElement('li');
       li.textContent = element.textContent;
@@ -20,11 +25,11 @@
     }
 
     beforeEach(function () {
-      this.sandbox = sinon.sandbox.create();
+      sandbox = sinon.sandbox.create();
 
-      var container = document.createElement('div');
+      container = document.createElement('div');
 
-      var elements = [
+      elements = [
         document.createElement('h2'),
         document.createElement('h2'),
         document.createElement('h2'),
@@ -37,13 +42,11 @@
         container.appendChild(elements[i]);
       }
 
-      this.container = container;
-      this.elements = elements;
-      this.elementList = container.getElementsByTagName('h2');
+      elementList = container.getElementsByTagName('h2');
     });
 
     afterEach(function () {
-      this.sandbox.restore();
+      sandbox.restore();
     });
 
     it('is a function', function () {
@@ -63,7 +66,7 @@
     });
 
     it('throws if a makeNavListItem is not provided', function () {
-      var titles = this.elementList;
+      var titles = elementList;
 
       assert.throws(function () {
         return navbar({ elementList: titles });
@@ -71,7 +74,7 @@
     });
 
     it('does not throw if elementList and makeNavListItem are provided', function () {
-      var titles = this.elementList;
+      var titles = elementList;
 
       assert.doesNotThrow(function () {
         return navbar({
@@ -82,10 +85,10 @@
     });
 
     it('defaults to listening for document scroll events', function () {
-      var addEventListenerSpy = this.sandbox.spy(document, 'addEventListener');
+      var addEventListenerSpy = sandbox.spy(document, 'addEventListener');
 
       navbar({
-        elementList: this.elementList,
+        elementList: elementList,
         makeNavListItem: makeNavListItem
       });
 
@@ -94,11 +97,11 @@
 
     it('uses a given element to listen to for scroll events', function () {
       var element = document.createElement('div');
-      var addEventListenerSpy = this.sandbox.spy(element, 'addEventListener');
+      var addEventListenerSpy = sandbox.spy(element, 'addEventListener');
 
       navbar({
         target: element,
-        elementList: this.elementList,
+        elementList: elementList,
         makeNavListItem: makeNavListItem
       });
 
@@ -107,7 +110,7 @@
 
     it('returns a nav element by default', function () {
       var nav = navbar({
-        elementList: this.elementList,
+        elementList: elementList,
         makeNavListItem: makeNavListItem
       });
 
@@ -116,7 +119,7 @@
 
     it('returns another tag name if tagName is provided', function () {
       var nav = navbar({
-        elementList: this.elementList,
+        elementList: elementList,
         makeNavListItem: makeNavListItem,
         tagName: 'div'
       });
@@ -125,56 +128,60 @@
     });
 
     describe('nav', function () {
+      var nav;
+
       beforeEach(function () {
-        this.nav = navbar({
-          elementList: this.elementList,
+        nav = navbar({
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         });
       });
 
       it('contains a single element, and it should be a ul', function () {
-        assert.equal(this.nav.children.length, 1);
-        assert.equal(this.nav.firstChild.tagName, 'UL');
+        assert.equal(nav.children.length, 1);
+        assert.equal(nav.firstChild.tagName, 'UL');
       });
 
       it('contains the correct number of li elements', function () {
-        assert.equal(this.nav.firstChild.children.length, this.elements.length);
+        assert.equal(nav.firstChild.children.length, elements.length);
       });
 
       it('contains li elements created from the original elementList', function () {
-        var listElements = this.nav.firstChild.children;
+        var listElements = nav.firstChild.children;
 
-        for (var i = 0, len = this.elements.length; i < len; i++) {
-          assert.equal(this.elements[i].textContent, listElements[i].textContent);
+        for (var i = 0, len = elements.length; i < len; i++) {
+          assert.equal(elements[i].textContent, listElements[i].textContent);
         }
       });
     });
 
     describe('scrolling', function () {
+      var stubs;
+
       beforeEach(function () {
-        this.stubs = [
-          this.sandbox.stub(this.elements[0], 'getBoundingClientRect').returns({ top: 0 }),
-          this.sandbox.stub(this.elements[1], 'getBoundingClientRect').returns({ top: 1 }),
-          this.sandbox.stub(this.elements[2], 'getBoundingClientRect').returns({ top: 2 }),
-          this.sandbox.stub(this.elements[3], 'getBoundingClientRect').returns({ top: 3 }),
-          this.sandbox.stub(this.elements[4], 'getBoundingClientRect').returns({ top: 4 })
+        stubs = [
+          sandbox.stub(elements[0], 'getBoundingClientRect').returns({ top: 0 }),
+          sandbox.stub(elements[1], 'getBoundingClientRect').returns({ top: 1 }),
+          sandbox.stub(elements[2], 'getBoundingClientRect').returns({ top: 2 }),
+          sandbox.stub(elements[3], 'getBoundingClientRect').returns({ top: 3 }),
+          sandbox.stub(elements[4], 'getBoundingClientRect').returns({ top: 4 })
         ];
       });
 
       it('checks the position of element list members when the navbar created', function () {
         navbar({
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         });
 
-        for (var i = 0, len = this.stubs.length; i < len; i++) {
-          assert.equal(this.stubs[i].callCount, 1);
+        for (var i = 0, len = stubs.length; i < len; i++) {
+          assert.equal(stubs[i].callCount, 1);
         }
       });
 
       it('picks the element closest to the top', function () {
         var lis = navbar({
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         }).getElementsByTagName('li');
 
@@ -186,11 +193,11 @@
       });
 
       it('uses the absolute distance of each element from the top', function () {
-        this.stubs[0].returns({ top: -4});
-        this.stubs[1].returns({ top: -3 });
+        stubs[0].returns({ top: -4 });
+        stubs[1].returns({ top: -3 });
 
         var lis = navbar({
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         }).getElementsByTagName('li');
 
@@ -206,12 +213,12 @@
 
         var lis = navbar({
           target: element,
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         }).getElementsByTagName('li');
 
-        this.stubs[0].returns({ top: -4 });
-        this.stubs[1].returns({ top: -3 });
+        stubs[0].returns({ top: -4 });
+        stubs[1].returns({ top: -3 });
 
         triggerScrollEvent(element);
 
@@ -227,45 +234,45 @@
 
         navbar({
           target: element,
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         });
 
-        assert.equal(this.stubs[0].callCount, 1);
+        assert.equal(stubs[0].callCount, 1);
 
         triggerScrollEvent(element);
 
-        assert.equal(this.stubs[0].callCount, 2);
+        assert.equal(stubs[0].callCount, 2);
       });
 
       it('checks only after a debounceTime has elapsed when debounceTime is a number', function () {
         var element = document.createElement('div');
-        var clock = this.sandbox.useFakeTimers();
+        var clock = sandbox.useFakeTimers();
 
         navbar({
           target: element,
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem,
           debounceTime: 100
         });
 
-        assert.equal(this.stubs[0].callCount, 1); // Creation of the navbar counts.
+        assert.equal(stubs[0].callCount, 1); // Creation of the navbar counts.
 
         clock.tick(110);
 
         triggerScrollEvent(element); // This one should count.
 
-        assert.equal(this.stubs[0].callCount, 2);
+        assert.equal(stubs[0].callCount, 2);
 
         triggerScrollEvent(element); // This one should not.
 
-        assert.equal(this.stubs[0].callCount, 2);
+        assert.equal(stubs[0].callCount, 2);
 
         clock.tick(110);
 
         triggerScrollEvent(element); // This one should count.
 
-        assert.equal(this.stubs[0].callCount, 3);
+        assert.equal(stubs[0].callCount, 3);
       });
 
       it('ignores scroll events from child elements of the target', function () {
@@ -276,12 +283,12 @@
 
         var lis = navbar({
           target: element,
-          elementList: this.elementList,
+          elementList: elementList,
           makeNavListItem: makeNavListItem
         }).getElementsByTagName('li');
 
-        this.stubs[0].returns({ top: -4});
-        this.stubs[1].returns({ top: -3 });
+        stubs[0].returns({ top: -4 });
+        stubs[1].returns({ top: -3 });
 
         if (document.createEvent) {
           var evt = document.createEvent('HTMLEvents');
