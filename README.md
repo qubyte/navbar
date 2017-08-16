@@ -17,6 +17,9 @@ Browserify. If you prefer to use neither, then you can still load it the old
 fashioned way, which will append the `navbar` function to the `window` object
 (as in the demo).
 
+Where available, this library will use passive event listeners to make scrolling
+sliky smooth.
+
 This library has no production dependencies, making loading with any of the
 above mentioned schemes a breeze!
 
