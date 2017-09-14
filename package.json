@@ -25,12 +25,12 @@
     "navbar.es6.js"
   ],
   "devDependencies": {
-    "chai": "4.1.1",
-    "eslint": "4.4.1",
+    "chai": "4.1.2",
+    "eslint": "4.6.1",
     "eslint-config-qubyte": "1.1.0",
-    "mocha": "3.5.0",
-    "rollup": "0.47.5",
-    "sinon": "3.2.0",
+    "mocha": "3.5.3",
+    "rollup": "0.49.3",
+    "sinon": "3.2.1",
     "testem": "^1.18.3"
   }
 }
