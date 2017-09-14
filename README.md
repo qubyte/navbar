@@ -1,5 +1,7 @@
 # navbar
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/qubyte/navbar.svg)](https://greenkeeper.io/)
+
 `navbar` is a tiny library to help you create navigation bars that listen for
 scroll events and calculate which element is closest to the top left of the
 window, giving the associated navigation list item a `navbar-active` class.
