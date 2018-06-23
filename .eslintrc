@@ -7,6 +7,7 @@
   },
   "extends": "qubyte",
   "rules": {
-    "no-empty": "off"
+    "no-empty": "off",
+    "getter-return": "off"
   }
 }
