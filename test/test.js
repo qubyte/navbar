@@ -25,7 +25,7 @@
     }
 
     beforeEach(function () {
-      sandbox = sinon.sandbox.create();
+      sandbox = sinon.createSandbox();
 
       container = document.createElement('div');
 
