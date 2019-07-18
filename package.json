@@ -28,7 +28,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.0.0",
     "eslint-config-qubyte": "~2.0.0",
-    "mocha": "~6.1.0",
+    "mocha": "~6.2.0",
     "rollup": "~1.17.0",
     "sinon": "^7.2.4",
     "testem": "~2.17.0"
