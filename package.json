@@ -3,12 +3,12 @@
   "version": "2.1.0",
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active. Fast, supports older browsers, and has no dependencies.",
   "main": "navbar.umd.js",
-  "jsnext:main": "navbar.es6.js",
   "module": "navbar.es6.js",
   "homepage": "https://qubyte.github.io/navbar/",
   "scripts": {
     "build-umd": "rollup -f umd -n navbar navbar.es6.js > navbar.umd.js",
-    "test": "eslint . && testem ci --launch firefox"
+    "test": "testem ci",
+    "lint": "eslint ."
   },
   "repository": "github:qubyte/navbar",
   "keywords": [
