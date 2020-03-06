@@ -29,7 +29,7 @@
     "eslint": "^6.4.0",
     "eslint-config-qubyte": "~3.0.0",
     "mocha": "~7.1.0",
-    "rollup": "^1.21.3",
+    "rollup": "^2.0.0",
     "sinon": "^9.0.0",
     "testem": "~3.0.0"
   }
