@@ -12,18 +12,13 @@ open `demo.js` in your (recent version) browser.
 
 ## Installation
 
-This library comes with built in support for loading with RequireJS and
-Browserify. If you prefer to use neither, then you can still load it the old
-fashioned way, which will append the `navbar` function to the `window` object
-(as in the demo).
-
-This library is also provided as an ES2015 module. Rollup and Webpack are able
-to figure this out automatically, but if you're using ES2015 modules from the
+This library is provided as an ES2015 module. Rollup and Webpack are able to
+figure this out automatically, but if you're using ES2015 modules from the
 browser you should use the `navbar.es6.js` file. For quickly getting going, you
 can also use [unpkg](https://unpkg.com) (not recommended for production):
 
 ```
-import navbar from 'https://unpkg.com/navbar?module';
+import navbar from 'https://unpkg.com/navbar';
 ```
 
 Where available, this library will use passive event listeners to make scrolling
@@ -61,11 +56,11 @@ this may enhance performance.
 
 ## Example
 
-Similar to the [demo](/demo), except using Browserify rather than just appending
-to the window object:
+Similar to the [demo](/demo), except using a bundler like rollup, you can import
+`navbar` when it is installed into `node_modules` by `npm`.
 
 ```javascript
-const navbar = require('navbar');
+import navbar from 'navbar';
 
 // This function is where you define a list element, giving it classes,
 // registering listeners, and appending children as you like. This one couples

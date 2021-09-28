@@ -2,6 +2,8 @@
 // registering listeners, and appending children as you like. This one couples
 // with demo.css to produce labels that appear when a the list item is hovered
 // over.
+import navbar from '../navbar.es6.js';
+
 function makeNavListItem(element) {
   var li = document.createElement('li');
   var label = document.createElement('span');
@@ -33,7 +35,7 @@ function makeNavListItem(element) {
 }
 
 // Generate a nav list element for every h2 element on the page.
-var nav = window.navbar({
+const nav = navbar({
   elementList: document.querySelectorAll('h2'),
   makeNavListItem: makeNavListItem,
   debounceTime: 100

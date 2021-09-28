@@ -3,7 +3,6 @@
     "mocha": true
   },
   "globals": {
-    "navbar": true,
     "chai": true,
     "sinon": true
   }
