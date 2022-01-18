@@ -26,10 +26,10 @@
   ],
   "devDependencies": {
     "chai": "^4.3.4",
-    "eslint": "^8.3.0",
+    "eslint": "^8.7.0",
     "eslint-config-qubyte": "^4.1.0",
-    "mocha": "^9.1.3",
-    "rollup": "^2.60.1",
+    "mocha": "^9.1.4",
+    "rollup": "^2.64.0",
     "sinon": "^12.0.1",
     "testem": "^3.6.0"
   }
