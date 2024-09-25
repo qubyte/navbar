@@ -12,25 +12,12 @@ open `demo.js` in your (recent version) browser.
 
 ## Installation
 
-This library comes with built in support for loading with RequireJS and
-Browserify. If you prefer to use neither, then you can still load it the old
-fashioned way, which will append the `navbar` function to the `window` object
-(as in the demo).
-
-This library is also provided as an ES2015 module. Rollup and Webpack are able
-to figure this out automatically, but if you're using ES2015 modules from the
-browser you should use the `navbar.es6.js` file. For quickly getting going, you
-can also use [unpkg](https://unpkg.com) (not recommended for production):
-
-```
-import navbar from 'https://unpkg.com/navbar?module';
-```
+This library is provided as an ES module. If you require a UMD build, please
+use version 2. This library has no production dependencies so using it with a
+bundler or directly in the browser requires no further setup.
 
 Where available, this library will use passive event listeners to make scrolling
 sliky smooth.
-
-This library has no production dependencies, making loading with any of the
-above mentioned schemes a breeze!
 
 This library should support any browser that implements
 `EventTarget.addEventListener` or `EventTarget.attachEvent`, which should cover
@@ -101,7 +88,7 @@ function makeNavListItem(element) {
 // Generate a nav list element for every h2 element on the page.
 const nav = navbar({
   elementList: document.querySelectorAll('h2'),
-  makeNavListItem: makeNavListItem,
+  makeNavListItem,
   debounceTime: 100
 });
 
