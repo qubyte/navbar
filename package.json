@@ -1,6 +1,6 @@
 {
   "name": "navbar",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A tiny library to create nav elements that smart update on scroll to keep the correct item active.",
   "type": "module",
   "main": "navbar.js",
