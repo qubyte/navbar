@@ -1,3 +1,5 @@
+This repository has been [moved to codeberg](https://codeberg.org/qubyte/navbar).
+
 # navbar
 
 `navbar` is a tiny library to help you create navigation bars that listen for
